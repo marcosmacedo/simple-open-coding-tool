@@ -1,6 +1,7 @@
 # 🏷️ Simple Open Coding Tool
 
-This is a simple web-based tool designed to streamline dataset labelling, such as open coding, particularly for datasets containing links. Instead of manually opening URLs and switching between windows, this tool embeds links directly in a web-app. It has been successfully used in multiple projects for labelling GitHub Pull Requests.
+This is a simple web-based tool designed to streamline dataset labelling, such as open coding, particularly for datasets containing links. Instead of manually opening URLs and switching between windows, this tool embeds links directly in a web-app. It has been successfully used in multiple projects for labelling GitHub Pull Requests.  
+I made this tool for my personal use, so it may not be useful right away for your project, but it is very easy to modify and adapt to your requirements.
 
 ![Screenshot of the Simple Open Coding Tool](images/screenshot.png)
 
