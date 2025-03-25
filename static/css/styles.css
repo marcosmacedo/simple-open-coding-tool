@@ -1,0 +1,40 @@
+/* Custom default button */
+.btn-light,
+.btn-light:hover,
+.btn-light:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+
+/*
+ * Base structure
+ */
+
+body {
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+}
+
+.cover-container {
+  max-width: 42em;
+}
+
+iframe {
+  overflow: scroll;
+  width: 81.25em;
+  height: 31.25em;
+}
+
+.cut-overflow {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: scroll;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+
+.desc-size {
+  width: 31.25em;
+  height: 6.25em;
+}

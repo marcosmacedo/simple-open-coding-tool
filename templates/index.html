@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PRs Dataset Labelling Tool</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <link href="static/css/styles.css" rel="stylesheet">
+    </head>
+    <body class="d-flex h-100 text-center text-bg-dark">
+        <div class="d-flex w-100 h-100 p-3 flex-column">
+            <header class="mb-auto">
+                <div>
+                    <h3 class="float-md-start mb-0">Labeling Tool</h3>
+                </div>
+            </header>
+            <main class="px-3">
+
+            <div class="container">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="alert alert-danger cut-overflow " role="alert">
+                        <h4 class="alert-heading">Oops .. Please try again</h4>
+                            {% for message in messages %}
+                            <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <form action="/process" method="post">
+                <div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-8">
+                            <div class="alert alert-info cut-overflow " role="alert">
+                                <h4 class="alert-heading">{{alert_title}}</h4>
+                                    {{alert_desc}}
+                              </div>
+                              <select class="form-select" name="existing_label" aria-label="Default select example">
+                                <option value="-1">Select label or write new one below ...</option>
+                                {% if current_labels|length > 0 %}
+                                    {% for s in current_labels %}
+                                        <option value="{{ s }}">{{ s }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                              </select>
+                              <input type="text" name="new_label" class="form-control mt-2" placeholder="Fill in with new label, if didn't select above">
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col">
+                                        <input type="text" hidden name="index" value="{{index}}">
+                                        <textarea class="form-control mb-2" rows="5" name="comment" placeholder="Additional comment..."></textarea>
+                                        <button type="submit" name="save" class="btn btn-lg btn-success">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <iframe src="{{iframe_url}}" title="GitHub"></iframe>
+                        Processed {{current_count}} entries. {{df_size}} entries to left in the dataset validate.
+                    </div>
+                </div>
+                </form>
+            </div>
+            </main>
+        </div>
+    </body>
+</html>
