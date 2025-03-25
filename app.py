@@ -18,7 +18,7 @@ bot_first = None
 current_url = None
 is_done = False
 current_index = None
-current_labels = None
+current_labels = []
 
 #Settings for the tool. Replace with the dataset path
 dataset_path = "samples/to_label_keywords_allyears.csv"
@@ -34,9 +34,7 @@ def load_dataset():
 
     #Remove entries that were validated previously
     if "_meta_validated" in df.columns:
-        previously_validated = df[df["_meta_validated"] == True]
-        current_count = previously_validated.shape[0]
-        remaining_df = df[df["_meta_validated"] == False].reset_index(drop=True)
+        remaining_df = df[(df["_meta_validated"] == False) | (df["_meta_validated"] == "FALSE")].reset_index(drop=True)
     else:
         df["_meta_validated"] = False
 
@@ -62,6 +60,7 @@ def get_next_entry():
     load_dataset()
 
     #Load the next entry
+    print(remaining_df.shape[0])
     if remaining_df.shape[0] > 0:
         current_entry = remaining_df.iloc[0]
         remaining_df = remaining_df.drop(index=0).reset_index(drop=True)
