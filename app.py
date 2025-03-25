@@ -21,7 +21,7 @@ current_index = None
 current_labels = None
 
 #Settings for the tool. Replace with the dataset path
-dataset_path = "samples/sample.csv"
+dataset_path = "samples/to_label_keywords_allyears.csv"
 
 def load_dataset():
     global df
